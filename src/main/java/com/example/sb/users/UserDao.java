@@ -30,5 +30,4 @@ public interface UserDao {
 	@Select("select count(uid) from users where isDeleted=0")
 	int getUserCount();
 	
-	
 }

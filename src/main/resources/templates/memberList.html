@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <table border="1">
+    <tr>
+      <th>아이디</th>
+      <th>이름</th>
+      <th>나이</th>
+      <th>국적</th>
+    </tr>
+    <tr th:each="member, iterStat : ${memberList}">
+      <td> 
+        <span th:if="${member.mid % 2 == 1}">
+          <span style="color: blue" th:text="${member.mid}"></span>
+        </span>
+        <span th:if="${member.mid % 2 == 0}">
+          <span style="color: red" th:text="${member.mid}"></span>
+        </span>
+      </td>
+      <td> 
+        <span th:if="${iterStat.first}">
+          <span style="background: yellow" th:text="${member.name}"></span>
+        </span>
+        <span th:if="${iterStat.last}">
+          <span style="background: cyan" th:text="${member.name}"></span>
+        </span>
+        <span th:unless="${iterStat.first} or ${iterStat.last}">
+          <span style="background: beige" th:text="${member.name}"></span>
+        </span>
+      </td>
+      <td> 
+        <span th:if="${member.age < 20}">
+          <span style="color: blue" th:text="${member.age}"></span>
+        </span>
+        <span th:if="${member.age >= 20}">
+          <span style="color: red" th:text="${member.age}"></span>
+        </span>
+      </td>
+      <td> 
+         <span th:if="${member.country eq '한국'}">
+          <span style="background: orange" th:text="${member.country}"></span>
+        </span>
+        <span th:if="${member.country eq '미국'}">
+          <span style="background: skyblue" th:text="${member.country}"></span>
+        </span>
+        <span th:if="${member.country ne '한국' and member.country ne '미국'}">
+          <span style="background: beige" th:text="${member.country}"></span>
+        </span> 
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
